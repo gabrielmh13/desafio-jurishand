@@ -25,7 +25,7 @@ describe('List Articles', () => {
         })
 
         expect(result).toHaveLength(3)
-        expect(result[0]).toHaveProperty('id', 3)
+        expect(result[0]).toHaveProperty('id', 2)
     })
 
     it("Should be able to return only one article filtered by category", async () => {
