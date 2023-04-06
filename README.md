@@ -64,15 +64,103 @@ gabriel@DESKTOP:~/api/$ npm run build
 gabriel@DESKTOP:~/api/$ npm run start
 ```
 
-#### Endpoints
+### Endpoints
 
-A API apresenta somente o endpoint `/artigos` para realizar uma requisição GET e recuperar os artigos.
+A API apresenta o endpoint `/artigos` para realizar as requisições GET, POST, DELETE e PUT.
 
-Ela também apresenta 3 tipos de parâmetros que podem ser passados pela URL para ordenar e filtrar os artigos buscados.
+#### GET /artigos
+Apresenta 3 tipos de parâmetros que podem ser passados pela URL para ordenar e filtrar os artigos buscados e recebe a resposta em JSON.
 
 - `/artigos?order=asc` ou `/artigos?order=desc` para ordenar pela data dos artigos.
 - `/artigos?category=Penal` para filtrar pela categoria dos artigos.
 - `/artigos?keyword=lei` para buscar artigos por termo-chave.
+
+```json
+    [
+        {
+            "id": 1,
+            "author": "Gabriel Hernandes",
+            "title": "Código Civil",
+            "content": "Lei de Introdução...",
+            "date": "2023-04-06T09:52:59.713Z",
+            "category": "Civil"
+        },
+        {
+            "id": 2,
+            "author": "Gabriel Hernandes",
+            "title": "Código Penal",
+            "content": "Lei de Introdução...",
+            "date": "2023-04-06T09:54:08.057Z",
+            "category": "Penal"
+        }
+]
+```
+
+#### GET /artigos/id
+Busca os dados relacionados ao artigo com o **id** selecionado e recebe a resposa em JSON.
+
+```json
+    {
+		"id": 1,
+		"author": "Gabriel Hernandes",
+		"title": "Código Civil",
+		"content": "Lei de Introdução...",
+		"date": "2023-04-06T09:52:59.713Z",
+		"category": "Civil"
+	}
+```
+
+#### POST /artigos/id
+Nesta rota deverá ser enviado um objeto JSON para que seja criado um novo registro no banco de dados.
+```json
+    {
+        "author": "Gabriel Hernandes",
+        "title": "Código Trabalhista",
+        "content": "Lei de Introdução...",
+        "category": "Trabalhista"
+    }
+```
+A resposta será um JSON com dois campos novos: **id** e **date**.
+```json
+    {
+        "id": 3,
+        "author": "Gabriel Hernandes",
+        "title": "Código Trabalhista",
+        "content": "Lei de Introdução...",
+        "date": "2023-04-06T09:55:52.258Z",
+        "category": "Trabalhista"
+    }
+```
+
+#### DELETE /artigos/id
+Nesta rota só é necessário passar o **id** pela URL, e se tudo ocorrer bem será retornado um status code 200 e o seguinte objeto JSON:
+```json
+    {
+	    "message": "Artigo deletado com sucesso!"
+    }
+```
+#### PUT /artigos/id
+Esta rota recebe o **id** pela URL e um corpo JSON para atualizar o registro no banco de dados.
+```json
+    {
+        "author": "Gabriel",
+        "title": "Código Trabalhista",
+        "content": "Lei de Introdução...",
+        "category": "Trabalhista"
+    }
+```
+
+Caso tudo ocorra bem, será devolvido a seguinte resposta JSON:
+```json
+    {
+        "id": 3,
+        "author": "Gabriel",
+        "title": "Código Trabalhista",
+        "content": "Lei de Introdução...",
+        "date": "2023-04-06T09:55:52.258Z",
+        "category": "Trabalhista"
+    }
+```
 
 ## Script Python
 
