@@ -7,15 +7,24 @@ import cors from 'cors'
 
 dotenv.config()
 
-const app = express()
-app.use(express.json())
-app.use(cors({
-    origin: '*'
-}))
+function createServer() {
+    const app = express()
+    app.use(express.json())
+    app.use(cors({
+        origin: '*'
+    }))
 
-app.use(articlesRoutes)
+    app.use(articlesRoutes)
 
-const port = process.env.PORT || 3333
-app.listen(port, () => {
-    console.log("Server is listening on port", port)
-})
+    const port = process.env.PORT || '3333'
+    process.env.PORT = port
+    return app.listen(port, () => {
+        console.log("Server is listening on port", port)
+    })
+}
+
+if (process.env.NODE_ENV != "test") {
+    createServer()
+}
+
+export { createServer }

@@ -1,6 +1,6 @@
 import "reflect-metadata";
-import { ArticlesRepositoryInMemory } from "../../repositories/in-memory/ArticlesRepositoryInMemory";
-import { ListAllArticlesUseCase } from "./ListAllArticlesUseCase";
+import { ArticlesRepositoryInMemory } from "../../modules/artigos/repositories/in-memory/ArticlesRepositoryInMemory";
+import { ListAllArticlesUseCase } from "../../modules/artigos/useCases/ListAllArticles/ListAllArticlesUseCase";
 
 describe('List Articles', () => {
 
