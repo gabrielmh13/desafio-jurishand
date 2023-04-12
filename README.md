@@ -110,7 +110,7 @@ Busca os dados relacionados ao artigo com o **id** selecionado e recebe a respos
 	}
 ```
 
-#### POST /artigos/id
+#### POST /artigos
 Nesta rota deverá ser enviado um objeto JSON para que seja criado um novo registro no banco de dados.
 ```json
     {
